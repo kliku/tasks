@@ -24,4 +24,9 @@ public class TaskRepositoryInMemory implements TaskRepository {
     public void remove(Task task) {
         tasks.remove(task);
     }
+
+    @Override
+    public void update(Task task) {
+
+    }
 }

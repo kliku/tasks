@@ -1,6 +1,5 @@
 package pl.damian.backend.domain.task;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -20,41 +19,34 @@ public class TaskService {
     }
 
     public Task addNoteToTask(String taskId, String note) {
-        // get task by task id
         Task task = getTask(taskId);
-
-        // add note to this task
         task.getNotes().add(note);
+        taskRepository.update(task);
         return task;
     }
+
 
     public List<Task> getTasks() {
         return taskRepository.getAll();
     }
 
-    public void finishTask(String taskId) {
-        for (Task task : taskRepository.getAll()) {
-            if (task.getId().equals(taskId)) {
-                task.finishTask();
-            }
-        }
+    public Task toggleTask(String taskId) {
+        Task task = getTask(taskId);
+        task.toggleTask();
+        taskRepository.update(task);
+        return task;
     }
 
     public void deleteTask(String taskId) {
-        for (int i = 0; i < taskRepository.getAll().size(); i++) {
-            Task task = taskRepository.getAll().get(i);
-            if (task.getId().equals(taskId)) {
-                taskRepository.remove(task);
-            }
-        }
+        Task task = getTask(taskId);
+        taskRepository.remove(task);
     }
 
-    public void changeTask(String taskId, String newTask) {
-        for (Task task : taskRepository.getAll()) {
-            if (task.getId().equals(taskId)) {
-                task.changeTask(newTask);
-            }
-        }
+    public Task changeTaskName(String taskId, String newTask) {
+        Task task = getTask(taskId);
+        task.changeTask(newTask);
+        taskRepository.update(task);
+        return task;
     }
 
     private Task getTask(String taskId) {

@@ -2,12 +2,12 @@ package pl.damian.backend.api;
 
 import pl.damian.backend.domain.task.Task;
 import pl.damian.backend.domain.task.TaskService;
-import pl.damian.backend.infrastructure.repository.TaskRepositoryInMemory;
+import pl.damian.backend.infrastructure.repository.TaskRepositoryInFile;
 
 import java.util.List;
 
 public class Tasks {
-    private final TaskService taskService = new TaskService(new TaskRepositoryInMemory());
+    private final TaskService taskService = new TaskService(new TaskRepositoryInFile());
 
 
     public void createTask(String taskName) {
@@ -23,8 +23,8 @@ public class Tasks {
     }
 
 
-    public void finishTask(String taskId) {
-        taskService.finishTask(taskId);
+    public void toggleTask(String taskId) {
+        taskService.toggleTask(taskId);
     }
 
     public void deleteTask(String taskId) {
@@ -33,6 +33,6 @@ public class Tasks {
 
 
     public void changeTask(String taskId, String newTask) {
-        taskService.changeTask(taskId, newTask);
+        taskService.changeTaskName(taskId, newTask);
     }
 }

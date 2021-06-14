@@ -14,7 +14,7 @@ public class ApplicationConsole implements ApplicationView {
 
         do {
             System.out.println("Wybierz opcje:\n [0] - wyjdź \n [1] - dodaj zadanie \n [2] - dodaj notatkę " +
-                    "\n [3] - zakończ zadanie \n [4] - usuń zadanie \n [5] - zmiana zadania");
+                    "\n [3] - zmień status zadania \n [4] - usuń zadanie \n [5] - zmiana zadania");
             String nrOption = new Scanner(System.in).nextLine();
             switch (nrOption) {
                 case "0":
@@ -27,7 +27,7 @@ public class ApplicationConsole implements ApplicationView {
                     addNoteToTask();
                     break;
                 case "3":
-                    finishTask();
+                    toggleTask();
                     break;
                 case "4":
                     deleteTask();
@@ -46,7 +46,6 @@ public class ApplicationConsole implements ApplicationView {
         System.out.println("Zmień nazwę zadania");
         String newTask = new Scanner(System.in).nextLine();
         tasks.changeTask(taskId, newTask);
-
     }
 
     private void deleteTask() {
@@ -55,10 +54,10 @@ public class ApplicationConsole implements ApplicationView {
         tasks.deleteTask(taskId);
     }
 
-    private void finishTask() {
+    private void toggleTask() {//toggleTask
         System.out.println("Wpisz id zadania");
         String taskId = new Scanner(System.in).nextLine();
-        tasks.finishTask(taskId);
+        tasks.toggleTask(taskId);
     }
 
     private void addNoteToTask() {

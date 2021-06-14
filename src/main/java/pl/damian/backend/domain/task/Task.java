@@ -1,6 +1,7 @@
 package pl.damian.backend.domain.task;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Task {
     private String id;
@@ -8,7 +9,8 @@ public class Task {
     private boolean finished;
     private List<String> notes;
 
-
+    public Task() {
+    }
 
     public Task(String id, String taskName, List<String> notes) {
         this.id = id;
@@ -33,13 +35,26 @@ public class Task {
         return finished;
     }
 
-    public void finishTask() {
-        this.finished = true;
+    public void toggleTask() {
+        this.finished = !isFinished();
     }
 
     public void changeTask(String newTask) { this.taskName = newTask;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Task task = (Task) o;
+        return finished == task.finished && Objects.equals(id, task.id) && Objects.equals(taskName, task.taskName)
+                && Objects.equals(notes, task.notes);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, taskName, finished, notes);
+    }
 
     @Override
     public String toString() {
