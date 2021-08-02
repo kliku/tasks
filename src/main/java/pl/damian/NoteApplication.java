@@ -8,6 +8,5 @@ public class NoteApplication {
     public static void main(String[] args) {
         ApplicationView applicationView = new ApplicationConsole();
         applicationView.runApplication();
-
     }
 }

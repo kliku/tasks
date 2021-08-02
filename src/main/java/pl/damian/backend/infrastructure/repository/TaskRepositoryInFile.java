@@ -32,7 +32,7 @@ public class TaskRepositoryInFile implements TaskRepository {
     }
 
     @Override
-    public void add(Task task) {
+    public List<Task> add(Task task) {
         try {
             List<Task> tasks = getAll();
             tasks.add(task);
@@ -40,6 +40,7 @@ public class TaskRepositoryInFile implements TaskRepository {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return null;
     }
 
     @Override

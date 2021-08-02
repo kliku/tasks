@@ -30,7 +30,9 @@ public class Task {
     public List<String> getNotes() {
         return notes;
     }
-
+    public void addNote(String note) {
+        notes.add(note);
+    }
     public boolean isFinished() {
         return finished;
     }

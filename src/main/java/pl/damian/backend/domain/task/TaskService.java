@@ -20,7 +20,7 @@ public class TaskService {
 
     public Task addNoteToTask(String taskId, String note) {
         Task task = getTask(taskId);
-        task.getNotes().add(note);
+        task.addNote(note);
         taskRepository.update(task);
         return task;
     }

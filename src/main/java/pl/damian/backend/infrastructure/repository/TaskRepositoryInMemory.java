@@ -11,8 +11,9 @@ public class TaskRepositoryInMemory implements TaskRepository {
     private final List<Task> tasks = new ArrayList<>();
 
     @Override
-    public void add(Task task) {
+    public List<Task> add(Task task) {
         tasks.add(task);
+        return null;
     }
 
     @Override
