@@ -10,7 +10,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class TaskRepositoryInFile implements TaskRepository {
@@ -87,31 +86,5 @@ public class TaskRepositoryInFile implements TaskRepository {
         } else {
             return findTask;
         }
-    }
-
-    public static void main(String[] args) throws IOException {
-//        File fileTasks = new File("tasks.json");
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
-        Task task1 = new Task("123", "Zrób zakupy", Arrays.asList("note1", "note2"));
-        Task task2 = new Task("1234", "Zrób zakupy i obiad", Arrays.asList("note1", "note2", "note3"));
-////        List<Task> tasks = Arrays.asList(task1, task2);
-////        objectMapper.writeValue(fileTasks,tasks);
-//        List<Task> tasks = objectMapper.readValue(fileTasks, new TypeReference<>() {
-//        });
-//        Task task3 = new Task("123456","Kup chleb", Arrays.asList("note1"));
-//        tasks.add(task3);
-//        objectMapper.writeValue(fileTasks, tasks);
-////        System.out.println(objectMapper.writeValueAsString(tasks));
-////        System.out.println(fileTasks.exists());
-////        FileWriter fileWriter = new FileWriter(fileTasks);
-////        fileWriter.write("[]");
-////        fileWriter.close();
-////        System.out.println(fileTasks.exists());
-        TaskRepository taskRepositoryInFile = new TaskRepositoryInFile();
-//        System.out.println(taskRepositoryInFile.getAll());
-//        taskRepositoryInFile.add(task2);
-        taskRepositoryInFile.remove(task1);
-
     }
 }

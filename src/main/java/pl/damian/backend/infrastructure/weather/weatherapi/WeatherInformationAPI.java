@@ -27,6 +27,9 @@ public class WeatherInformationAPI implements WeatherInformation {
             HttpGet request = new HttpGet( weatherCurrentURL + "?key=" + token + "&q=" + city + "&aqi=no");
             CloseableHttpResponse response = closeableHttpClient.execute(request);
             String responseJson = EntityUtils.toString(response.getEntity());
+            if (responseJson.contains("\"error\"")) {
+                return Optional.empty();
+            }
             ObjectMapper objectMapper = new ObjectMapper();
             return Optional.of(objectMapper.readValue(responseJson, CurrentWeather.class));
         } catch (Exception e) {
@@ -42,6 +45,9 @@ public class WeatherInformationAPI implements WeatherInformation {
                     "&aqi=no&alerts=no");
             CloseableHttpResponse response = closeableHttpClient.execute(request);
             String responseJson = EntityUtils.toString(response.getEntity());
+            if (responseJson.contains("\"error\"")) {
+                return Optional.empty();
+            }
             ObjectMapper objectMapper = new ObjectMapper();
             return Optional.of(objectMapper.readValue(responseJson, ForecastWeather.class));
         } catch (Exception e) {
@@ -56,6 +62,9 @@ public class WeatherInformationAPI implements WeatherInformation {
             HttpGet request = new HttpGet(weatherHistoryURL + "?key=" + token + "&q=" + city + "&dt=" + date);
             CloseableHttpResponse response = closeableHttpClient.execute(request);
             String responseJson = EntityUtils.toString(response.getEntity());
+            if (responseJson.contains("\"error\"")) {
+                return Optional.empty();
+            }
             ObjectMapper objectMapper = new ObjectMapper();
             return Optional.of(objectMapper.readValue(responseJson, HistoryWeather.class));
         } catch (Exception e) {

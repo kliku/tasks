@@ -17,20 +17,20 @@ public class WeatherService {
 
     public String checkCurrentWeather(String city) {
         CurrentWeather currentWeather = weatherInformation.getCurrentWeather(city)
-                .orElseThrow(() -> new DomainException("Błąd z połączeniem."));
+                .orElseThrow(() -> new DomainException("Niepoprawne dane."));
         return getLocationCurrentWeatherInformation(currentWeather.getLocation(), currentWeather.getCurrent());
     }
 
     public String checkForecastWeather(String city, int days) {
         ForecastWeather forecastWeather = weatherInformation.getForecastWeather(city, days)
-                .orElseThrow(() -> new DomainException("Błąd z połączeniem."));
+                .orElseThrow(() -> new DomainException("Niepoprawne dane."));
         return getForecastWeatherInformation(forecastWeather);
     }
 
     public String checkHistoryWeather(String city, String date) {
         validateDate(date);
         HistoryWeather historyWeather = weatherInformation.getHistoryWeather(city, date)
-                .orElseThrow(() -> new DomainException("Błąd z połączeniem."));
+                .orElseThrow(() -> new DomainException("Niepoprawne dane."));
         return getHistoryWeatherInformation(historyWeather);
     }
 
